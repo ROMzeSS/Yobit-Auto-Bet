@@ -1,5 +1,6 @@
 var min_bet = 0.00000100,
     current_bet = min_bet,
+    max_lose = 12,
     lose_count = 0;
 
 var betting = false;
@@ -35,7 +36,7 @@ function checkResult(last_balance) {
             betting = false;
         } else if (last_balance > getBalance()) {
             // Lose
-            if (++lose_count > 10) {
+            if (++lose_count >= max_lose) {
                 current_bet = min_bet;
                 lose_count = 0;
                 betting = false;
